@@ -6,6 +6,7 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         env_file=".env", env_file_encoding="utf-8", extra="allow"
     )
+    is_development: bool = Field(False, env="IS_DEVELOPMENT")
     db_name: str = Field("bitcart", env="DB_DATABASE")
     db_user: str = Field("postgres", env="DB_USER")
     db_password: str = Field("", env="DB_PASSWORD")
@@ -14,4 +15,7 @@ class Settings(BaseSettings):
 
     @property
     def connection_str(self):
-        return f"mongodb+srv://{self.db_user}:{self.db_password}@{self.db_host}:{self.db_port}/{self.db_name}"
+        if self.is_development:
+            return f"mongodb://{self.db_user}:{self.db_password}@{self.db_host}:{self.db_port}/{self.db_name}"
+        else:
+            return f"mongodb+srv://{self.db_user}:{self.db_password}@{self.db_host}/{self.db_name}?retryWrites=true&w=majority"

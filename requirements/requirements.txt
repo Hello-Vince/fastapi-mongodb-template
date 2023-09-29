@@ -13,6 +13,8 @@ anyio==3.7.1
     #   watchfiles
 click==8.1.7
     # via uvicorn
+dnspython==2.4.2
+    # via pymongo
 exceptiongroup==1.1.3
     # via anyio
 fastapi==0.103.1
@@ -23,6 +25,8 @@ httptools==0.6.0
     # via uvicorn
 idna==3.4
     # via anyio
+motor==3.3.1
+    # via -r requirements/requirements.in
 pydantic==2.4.1
     # via
     #   fastapi
@@ -31,6 +35,8 @@ pydantic-core==2.10.1
     # via pydantic
 pydantic-settings==2.0.3
     # via -r requirements/requirements.in
+pymongo==4.5.0
+    # via motor
 python-dotenv==1.0.0
     # via
     #   pydantic-settings
