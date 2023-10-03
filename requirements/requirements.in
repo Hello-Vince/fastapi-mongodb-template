@@ -2,3 +2,8 @@ fastapi
 uvicorn[standard]
 pydantic-settings
 motor
+beanie
+passlib
+pyjwt
+pydantic[email]
+bcrypt

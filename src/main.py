@@ -1,14 +1,4 @@
-from fastapi import FastAPI
-import motor.motor_asyncio
-from src.settings import Settings
+import uvicorn
 
-app = FastAPI()
-
-
-@app.get("/")
-async def read_root():
-    settings = Settings()
-    client = motor.motor_asyncio.AsyncIOMotorClient(settings.connection_str)
-    db = client
-    print(db)
-    return {"string": settings.connection_str}
+if __name__ == "__main__":
+    uvicorn.run("app:app", host="0.0.0.0", port=8080, reload=True)
